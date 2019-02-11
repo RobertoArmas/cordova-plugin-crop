@@ -51,7 +51,7 @@ The resulting JPEG picture height. default: -1
 
 <img src="screenshot-example.png" width="250" height="500">
 
-This is an example service that uses ionic-native's built in camera and the cordova-plugin-crop to create a cropped version of the image and return the file path. 
+This is an example service that uses ionic-native's built in camera and the cordova-plugin-crop to create a cropped version of the image and return the file path.
 
 ```js
 import { Injectable } from '@angular/core';
@@ -67,7 +67,7 @@ export class CameraService {
         mediaType: Camera.MediaType.ALLMEDIA,
         destinationType: Camera.DestinationType.FILE_URI
   }
-  
+
   constructor(public platform: Platform) {}
 
   // Return a promise to catch errors while loading image
@@ -84,7 +84,7 @@ export class CameraService {
           fileUri = 'file://' + fileUri;
 
           /* Using cordova-plugin-crop starts here */
-          return Crop.crop(fileUri, { quality: 100, targetWidth: -1, targetHeight: -1 });
+          return Crop.crop(fileUri, { quality: 100, targetWidth: -1, targetHeight: -1, keepAspectRatio: false });
         }
       })
       .then((path) => {
@@ -93,7 +93,7 @@ export class CameraService {
         return path;
       })
   }
-  
+
 }  
 ```
 
